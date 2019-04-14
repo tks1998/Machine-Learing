@@ -22,7 +22,7 @@ for i in range(0,len(X_test)):
 for i in range(0,len(y_test)):
     if result[i] == y_test[i]: 
         count = count + 1 
-print "truth data  ",y_test
-print "traning data",result
-print "Accuracy " , k , "nn" , 100*count/len(X_test)     
+print ("truth data  ",y_test)
+print ("traning data",result)
+print ("Accuracy " , k , "nn" , 100*count/len(X_test))     
 
