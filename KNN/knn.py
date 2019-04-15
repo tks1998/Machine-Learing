@@ -14,15 +14,23 @@ y_test = A[60:80, 5]
 #choose k
 result = []
 k=17
+# calculate distance between X_test and X_train    
+distance = dist_ss_fast(X_test,X_train)
+
+#result choose k point neart 
+result = choose(k,distance,y_train)
+
 count = 0
-# calculate distance between vector in X_test and vector in X_train    
-for i in range(0,len(X_test)):
-    result.append(choose(k,X_test[i],X_train,y_train))
 
 for i in range(0,len(y_test)):
     if result[i] == y_test[i]: 
         count = count + 1 
+
 print ("truth data  ",y_test)
 print ("traning data",result)
 print ("Accuracy " , k , "nn" , 100*count/len(X_test))     
 
+print("scaling data")
+
+t = np.mean(X_train,axis = 0 ) 
+st = np.std(X_train,axis = 0)
