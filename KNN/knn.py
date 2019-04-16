@@ -67,6 +67,7 @@ Precision_f1_recall(result,y_test)
 print("TIME EXCUTION ", ed - t)
 #scaling with rescaling
 print("scaling data with rescaling")
+t= time.time()
 X_test_rescaling = rescaling (X_test)
 X_train_rescaling = rescaling(X_train)
 
@@ -74,3 +75,5 @@ distance = dist_ss_fast(X_test_rescaling,X_train_rescaling)
 result = choose(k,distance,y_train)
 output(result,y_test)
 Precision_f1_recall(result,y_test)
+ed = time.time()
+print("TIME EXCUTION",ed-t)
