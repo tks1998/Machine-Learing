@@ -15,7 +15,7 @@ def dist_ps_fast(z, X):
 def dist_ss_0(Z, X):
     M = Z.shape[0]
     N = X.shape[0]
-    res = np.zeros((M, N))
+    res = np.zeros((M, N))  
     for i in range(M):
         res[i] = dist_ps_fast(Z[i], X)
     return res

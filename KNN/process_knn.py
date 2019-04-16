@@ -1,6 +1,6 @@
 import numpy as np
 #compute distance between set X_test and set X_train
-
+from sklearn import metrics
 def dist_ss_fast(Z, X):
     X2 = np.sum(X*X, 1) # square of l2 norm of each ROW of X
     Z2 = np.sum(Z*Z, 1) # square of l2 norm of each ROW of Z
@@ -33,3 +33,18 @@ def choose(k,distance_of_set,Y):
     for i in range(0,len(distance_of_set)):
         label_train.append(findlabel(distance_of_set[i],k,Y))
     return label_train
+def output(result,label):
+    count = 0
+    for i in range(0,len(label)):
+        if result[i] == label[i]: 
+            count = count + 1 
+    print ("truth data  ",label)
+    print ("traning data",result)
+    print ("Accuracy " ,100*count/len(label))     
+
+
+def Precision_f1_recall(traingdata ,  realdata ): 
+    print('Precision          Recall       F1 score ')
+    print('%.2f'% (metrics.precision_score(realdata, traingdata)) ,"              ",
+    '%.2f'% (metrics.recall_score(realdata, traingdata)) ,"       ",
+    '%2f'% (metrics.f1_score(realdata,traingdata)) )
