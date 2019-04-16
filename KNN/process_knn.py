@@ -47,4 +47,4 @@ def Precision_f1_recall(traingdata ,  realdata ):
     print('Precision          Recall       F1 score ')
     print('%.2f'% (metrics.precision_score(realdata, traingdata)) ,"              ",
     '%.2f'% (metrics.recall_score(realdata, traingdata)) ,"       ",
-    '%2f'% (metrics.f1_score(realdata,traingdata)) )
+    '%.2f'% (metrics.f1_score(realdata,traingdata)) )

@@ -17,7 +17,7 @@ y_test = A[60:80, 5]
 result = []
 k=18
 print("RESULT " , k , "NN : ") 
-print("calculate none scaling")
+print("-------------------calculate none scaling---------------------")
 # calculate distance between X_test and X_train    
 st= time.time()
 distance = dist_ss_fast(X_test,X_train)
@@ -29,9 +29,9 @@ output(result,y_test)
 Precision_f1_recall(result,y_test)
 # pre process with scaling data #
 ed = time.time()
-print("/*********************/", ed-st)
-print("result scaling data with standardization" )
-
+print("Time excution with non scaling data", ed-st)
+print("---------result scaling data with standardization------------" )
+t= time.time()
 Xmean = np.mean(X_train,axis = 0 ) 
 st = np.std(X_train,axis = 0)
 X_test_stadar = standardization(X_test,Xmean,st)
@@ -43,10 +43,12 @@ result = choose(k,distance,y_train)
 print("------eluvation system--------")
 output(result,y_test)
 Precision_f1_recall(result,y_test)
-
-print("result scaling data with Scaling to unit length " )
+ed = time.time()
+print('TIME EXCUTION', ed -t )
+print("---------result scaling data with Scaling to unit length -----------" )
 # scaling with unit length
 # calculate norm2 each other vector in A
+t = time.time()
 p_train = []
 p_test =  []
 for i in range (0,60):
@@ -58,10 +60,11 @@ X_test_unit_length = unit_length(X_test,p_test)
 X_train_unit_length = unit_length(X_train,p_train)
 distance = dist_ss_fast(X_test_unit_length,X_train_unit_length)
 result = choose(k,distance,y_train)
-
+ed = time.time()
 print("------eluvation system--------")
 output(result,y_test)
 Precision_f1_recall(result,y_test)
+print("TIME EXCUTION ", ed - t)
 #scaling with rescaling
 print("scaling data with rescaling")
 X_test_rescaling = rescaling (X_test)
