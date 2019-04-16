@@ -1,11 +1,16 @@
 import numpy as np
-def scaling(data , t):
+def rescaling(data):
+    result = np.random.randn(len(data),5)
     for i in range(0,len(data)):
-        data[i] = data[i]/t[i] ; 
+        maxn = np.max(data[i])
+        minn = np.min(data[i])
+        result[i] = (data[i]-minn)/(maxn-minn)
+    return result
+def unit_length(data , t):
+    for i in range(0,len(data)):
+        data[i] = data[i]/t[i] 
     return data
-def scaling2(data,t,st):
+def standardization(data,t,st):
     for i in range(data.shape[1]-1):
-        data[:,i] = (data[:,i] - t[i] ) / st[i] ;  
-    
+        data[:,i] = (data[:,i] - t[i] ) / st[i] 
     return data
-
