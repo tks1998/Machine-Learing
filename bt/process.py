@@ -9,6 +9,8 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.naive_bayes  import BernoulliNB
 from prepare import *
+
+from sklearn import svm
 """
     read data with pandas
 """
@@ -62,14 +64,15 @@ desicion_tree = DecisionTreeClassifier().fit(vectorX, trainY)
 y_traning = desicion_tree.predict(vectortestX)
 output('Decision Tree model: ',score(y_traning,testY))
 
-"""
-    naive bayes model
-"""
+
 
 """
-naive_bayes = BernoulliNB().fit(vectorX, trainY)
-y_training= naive_bayes.predict(vectortestX)
-output('Naive Bayes model: ', score(testY, y_traning))
+    build model with SVM 
 """
+from sklearn import svm
+model = svm.SVC(kernel='linear')
+model.fit(vectorX,trainY)
 
+y_pred = model.predict(vectortestX)
+output('SVM   ',score(y_pred , testY))
 

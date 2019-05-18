@@ -68,3 +68,5 @@ for i in range(0,vectortestX.shape[0]):
     else:
         p.append(0)
 output('logistic  ' , score(p,testY))
+
+
