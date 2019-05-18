@@ -43,18 +43,19 @@ def add1Col(x):
 
 # def batch gradient descent
 @jit
-def BGD(x, y,alpha ,numIter=1000):
+def BGD(x, y,alpha ,numIter=10000):
     x = add1Col(x)
     theta = np.zeros(x.shape[1])
     m = x.shape[0]
     for i in range(numIter):
         z = x.dot(theta)
         h = sigmoid(z)
+        lossf = loss(h,y)
         theta = theta - (alpha / m) * x.transpose().dot((h - y))
-       
-    return theta
+
+    return lossf , theta
 alpha = 5
-theta = BGD(vectorX,trainY,alpha)
+lossfuntion , theta = BGD(vectorX,trainY,alpha)
 vectortestX = add1Col(vectortestX)
 vectortestXX = vectortestX.tocsr()
 # p save label 
@@ -67,3 +68,4 @@ for i in range(0,vectortestX.shape[0]):
     else:
         p.append(0)
 output('logistic  ' , score(p,testY))
+print(lossfuntion)
