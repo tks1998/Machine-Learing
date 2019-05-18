@@ -6,7 +6,8 @@ from sklearn import metrics
 from numba import jit
 from scipy.sparse import hstack
 from sklearn.neighbors import KNeighborsClassifier
-from id3 import Id3Estimator
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.naive_bayes  import BernoulliNB
 from prepare import *
 """
     read data with pandas
@@ -51,22 +52,25 @@ output('KNN model: ' , score(y_traning,testY))
 
 """
     processing data with id3
-    id3 support module Id3Estimator process data with decision tree  
+    model sklearn support DecisionTreeClassifier process data with desicion tree 
 """
 
-id3model = Id3Estimator()
-
-id3model.fit(vectorXX,trainYY)
-
-y_traning = id3model.predict(vectortestXX)
-
-output('decision tree model: ' , score(y_traning,testYY))
+desicion_tree = DecisionTreeClassifier().fit(vectorX, trainY)
+y_traning = desicion_tree.predict(vectortestX)
+output('Decision Tree model: ',score(y_traning,testY))
 
 """
+    naive bayes model
+"""
+
+naive_bayes = BernoulliNB().fit(vectorX, trainY)
+y_training= naive_bayes.predict(vectortestX)
+output('Naive Bayes model: ', score(testY, y_traning))
 
 
-
-
+"""
+    code tay ~~ 
+"""
 
 
 
